@@ -1,0 +1,34 @@
+
+<script src= "<?php echo $this->baseUrl('jquery-1.11.2.min.js');?>"></script>
+<style>
+    table{
+        margin: 30px auto;
+    }
+</style>
+<!--<script>
+//$(function(){
+//    $("table tr td#change").click(function(){
+//        $(this).hide();
+//    });
+//});
+//</script>-->
+<?php
+echo $this->baseUrl('jquery-1.11.2.min.js');
+echo $this->baseUrl()."/jquery-1.11.2.js";
+echo '<table border="2"><th>Product</th><th>Price</th><th>Image</th><th colspan="3">Action</th>';;
+for($i=0;$i<count($this->products);$i++)
+{
+    
+    echo"<tr>";
+    echo "<td>".$this->products[$i]['product_name']."</td>";
+    echo "<td>".$this->products[$i]['price']." pounds</td>";
+    echo '<td><img src="'.$this->baseUrl("upload/".$this->products[$i]['product_image']).'" width="100" height="100"></td>';
+    echo "<td>".$this->products[$i]['avaliable']."</td>";
+    echo '<td><a href="'.$this->baseUrl().'/product/edit/id/'.$this->products[$i]['product_id'].'">Edit</a></td>';
+    echo '<td><a href="'.$this->baseUrl().'/product/delete/id/'.$this->products[$i]['product_id'].'">Delete</a></td>';
+    echo"</tr>";
+}
+echo '</table>';
+
+?>
+<a>mai</a>

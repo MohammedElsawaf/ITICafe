@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="<?= $this->baseUrl() ?>/css/style.css" />
+<pre>
+    
+<div id="usrorder"> <fieldset>
+        <legend> My Order</legend>
+        <div id="lfdiv">
+            <?php
+                       // echo '<legend> last order</legend>';
+            if (isset($_SESSION['order'])) {
+       // print_r($_SESSION['order']);
+        echo "</pre></div>";
+        
+        echo "<div id='order'><fieldset>";
+        echo '<legend>My Order</legend>';
+        for ($i = 0; $i < count($_SESSION['order']); $i++) {
+            $order = array_shift($_SESSION['order']);
+            echo"<div >";
+            echo $order['product_name'];
+            echo "<input type='number' style=' width:30px;' value='" . $order['amount'] . "'>";
+            echo "<button class='incre' prodid='" . $order['product_id'] . "' >+</button>";
+            echo "<button class='decre' prodid='" . $order['product_id'] . "'>-</button>";
+            echo "EGP " . $order['price'];
+            echo "<button class='del' prodid='" . $order['product_id'] . "'>X</button>";
+            echo"</div>";
+            $_SESSION['order'][] = $order;
+        }
+        echo "</fieldset></div>";
+    
+            }
+            ?>
+        </div>
+            <hr>
+        <br>
+        <?php
+        echo "<form action='" . $this->baseUrl() . "/../public/Makeorder/confirm' method='post'>";
+        ?>
+        <label>Note</label>
+        <br>
+        <textarea rows="5" cols="50" id="note" name="note"></textarea> 
+        <br>
+        <hr>
+<!--        <label>Room:</label>    
+        <?php 
+        echo "<select name='roomid'>";
+//        foreach ($this->allroom as $room) {
+//            echo "<option value ='".$room['roomNo']."'>".$room['roomNo']."</option>";
+//        }
+//        echo "</select>"; 
+        ?>
+        <hr>-->
+        <input type="submit"  id="" value="Confirm" />
+    </fieldset></div>
+</form>
+
+<?php
+if (isset($_SESSION['error'])) {
+    print_r($_SESSION['error']);
+}
+
+echo "</pre></div>";
+echo "<div id='avprod'><fieldset>";
+echo '<legend>All product</legend>';
+for ($i = 0; $i < count($this->availableproduct); $i++) {
+//`P_id`, `name`, `price`, `image`, `available`, `C_id`
+    echo"<div>";
+    //<a href='#' onclick='updatefun("
+    echo"<a  class='action'  prodid='" . $this->availableproduct[$i]['product_id'] . "'>" . $this->availableproduct[$i]['product_name'];
+    echo "<img width='50' height='50' src='" . $this->baseUrl() . '/images/' . $this->availableproduct[$i]['product_image'] . "'/></a>";
+    echo $this->availableproduct[$i]['price'];
+    echo"</div>";
+}
+echo "</fieldset></div>";
+
+echo "<script src='" . $this->baseUrl() . "/js/order.js'></script>";
+?>
+</body>

@@ -1,0 +1,127 @@
+<?php
+
+$prod = array();
+for ($i = 0; $i < count($this->product); $i++) {
+    $prod [][$this->product[$i]['orders_order_id']]= array("product_name"=>$this->product[$i]['product_name'],"product_image"=>$this->product[$i]['product_image'],
+        "quantity"=>$this->product[$i]['quantity'],
+        "price"=>$this->product[$i]['price']);
+    
+}
+function group_by_key ($array) {
+  $result = array();
+  foreach ($array as $sub) {
+    foreach ($sub as $k => $v) {
+      $result[$k][] = $v;
+    }
+  }
+  return $result;
+}
+//var_dump(group_by_key ($prod));
+$prod = group_by_key ($prod);
+//var_dump($prod);
+//var_dump($prod[$this->order[0]['order_id']]);
+?>
+<section>
+    <div class="container">
+        <div class="row center-block">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">My Orders</li>
+                </ol>
+            </div><!--/breadcrums-->
+            <br>
+            <div class="row">
+                <form method="post">
+                    <div class="col-sm-offset-1 col-sm-1">
+                    <h5>Date From</h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="date" name="from" class="form-control">
+                    </div>
+                    <div class="col-sm-1">
+                        <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To</h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="date" name="to" class="form-control">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="submit" name="serach" value="serach" class="form-control">
+                    </div>
+                </form>
+                    
+            </div>
+            
+            <br>
+            <?php
+                if(isset($this->error)){
+                    ?>
+                        <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <?= $this->error ?>
+              </div>
+                        <?php
+                }
+            ?>
+            <br>
+            <table class="table table-bordered table-hover text-center" id="cafe-order" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th colspan="2">ORDER DATE</th>
+                        <th>STATUS</th>
+                        <th>AMOUNT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                   
+                        <?php
+                            for ($i = 0; $i < count($this->order); $i++) {
+                               ?>
+                        <tr data-toggle="collapse" data-target="#demo<?= $i ?>" class="accordion-toggle">
+                                <td colspan="2"><?= $this->order[$i]['date'] ?></td>
+                                <td><?= $this->order[$i]['status'] ?></td>
+                                <td><?= $this->total[$i]['amount'] ?> EGP</td>
+                                <td><a href="<?= $this->baseUrl() ?>/index/delete-Order/id/<?= $this->order[$i]['order_id'] ?>"><i class="fa fa-times"></i></a></td>
+                         </tr>
+                        <tr>
+                        <td colspan="5" class="hiddenRow">
+                            <div id="demo<?= $i ?>" class="accordian-body collapse">   
+                                <div class="row well text-center" style="margin-left: 0; margin-right: 0;">
+                                    <?php
+                                    
+                                        for ($m = 0; $m < count($prod[$this->order[$i]['order_id']]); $m++) {
+                                            
+                                            ?>
+                                            <div class = 'col-sm-2'>
+                                                <img src="<?= $this->baseUrl() . "/images/".$prod[$this->order[$i]['order_id']][$m]['product_image'] ?>" class="img-responsive" style="width:70%;height:70%;margin:25px auto;"/>
+                                                <h4><?= $prod[$this->order[$i]['order_id']][$m]['product_name'] ?></h4>
+                                                <h5><?= $prod[$this->order[$i]['order_id']][$m]['quantity'] ?></h5>
+                                            </div>
+                                            <?php
+                                       
+                                        }
+                                    ?>
+                                    
+                                   
+                                </div>
+                                 <div class="row" style="margin-left: 0; margin-right: 0;">
+                                    <div class = 'col-sm-offset-4 col-sm-4 text-center'>
+                                        <h4 style="margin-bottom:10px; margin-top:5px;padding:10px;border:1px solid #ccc;font:35px;">TOTAL &nbsp;  35 EGP<h4> 
+                                    </div>
+                                </div>         
+                            </div>    
+                        </td>
+                    </tr>
+                                <?php
+                            }
+                        
+                        ?>
+           
+                </tbody>
+            </table>
+                
+        </div>
+    </div>
+</section>

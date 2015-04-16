@@ -1,0 +1,64 @@
+
+<style>
+        table tr th,table tr td{
+        padding: 5px;
+        border: solid 1px #CCC;
+        width:95%;
+        
+    }
+    
+    table tr th{
+        background: #e4e4e4;
+        font: bold 0.9em Arial, Helvetica, san-serif;
+        color: #666;
+        
+    }
+    
+    table tr td{
+        font: 0.85em Arial, Helvetica, san-serif;
+        color: #333;
+        
+    }
+    
+    table tr:nth-child(2n+1){
+        background: #f1f1f1;
+    }
+    
+    
+    
+</style>
+
+<section id="my-content">
+    <div class="container">
+        <div class="row center-block">
+            
+
+            
+            <table class="table text-center" id="cafe-order" style="width:100%">
+                <tr>
+                    <th>IMAGE</th>
+                    <th>NAME</th>
+                    <th>ROOM NO.</th>
+                    <th>EXT.</th>
+                    <th colspan = '2'>ACTION</th>
+                </tr>
+                <?php
+                    $list = $this->users;
+                    for($i = 0 ; $i < count($list); $i++){
+                    ?>
+                <tr>
+                    <td><img src="<?= $this->baseUrl()."/avatars/".$list[$i]['image'] ?>" width="50" style="border: 1px solid #D0F6F9;border-radius: 3px;"/></td>
+                    <td><?= $list[$i]['name'] ?></td>
+                    <td><?= $list[$i]['room_no'] ?></td>
+                    <td><?= $list[$i]['ext'] ?></td>
+                    <td><a href='<?= $this->baseUrl()."/users/edit/id/".$list[$i]['user_id'] ?>' >Edit</a></td>
+                    <td><a href='<?= $this->baseUrl()."/admin/deleteuser/id/".$list[$i]['user_id'] ?>'>Delete</a></td>
+                </tr>
+                <?php
+                }   
+                ?>    
+            </table>
+            
+        </div>
+    </div>
+</section>

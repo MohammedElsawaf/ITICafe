@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<?php
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            $this->name = $auth->getIdentity()->name;
+            } else {
+                $this->name = "guest";
+            }
+    ?>        
+<html>
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>ELSAWAF CAFE Admin Panel</title>
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/reset.css" ?>" />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/layout.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/supersized.shutter.css"?>" />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/menu.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/font-awesome.css"?>"  />
+<link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Leckerli+One'  />	
+<link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Viga' />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/style.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/responsive.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/supersized.3.2.7.css"?>"  />
+
+<!--this is what needs to be handled-->
+
+    <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/bootstrap/css/bootstrap.min.css"?>" />
+    <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/font-awesome/css/font-awesome.min.css"?>" />
+
+</head>
+<body>
+    <style>
+        body{
+        background-color: #EEF261;
+    }
+        
+    </style>
+    <nav class="menu nav_wrapper" id="myslidemenu">
+        
+        <!--Profile Picture-->
+        <ul class="nav navbar-nav navbar-right">
+            <li><img id ="profile-img" href="index/index" src="<?= $this->baseUrl()."/images/profile.jpg"?>" width = "42" height="47"/></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $this->name ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?= $this->baseUrl() . "/index/logout" ?>">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        
+        <!--Search bar-->
+    <div class="col-sm-3 col-md-3 pull-left">
+        <form class="navbar-form" role="search">
+             <div class="input-group">
+                 <input type="text" class="form-control" placeholder="Search" name="q">
+                 <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                 </div>
+             </div>
+        </form>
+    </div>
+        
+    </nav>
+
+
+<!--Logo Start-->
+<section id="logo" style="">
+	<h1 style="font-size: 90px;">ELSAWAF CAFE</h1>
+    <h4>WELCOME TO ELSAWAF CAFETERIA</h4>
+</section>
+<!--Logo End-->
+
+<!--Menu Start-->
+<nav class="menu nav_wrapper" id="myslidemenu">
+    <ul class="menu" id="jqueryslidemenu">
+        <li><a href="<?= $this->baseUrl() . "/makeorder/" ?>"><i class="fa fa-home"></i>Home</a></li>
+    
+        <li><a href="<?= $this->baseUrl() . "/myorder/listmyyorder" ?>"><i class="fa fa-phone-square"></i>My Orders</a></li>
+    </ul>
+    
+   
+</nav>
+<!--Menu End-->
+<br>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+        <!--NavBar End -->
+        <?php echo $this->layout()->content; ?>
+        
+        
+        
+        <!--Footer Start-->
+       <!--Footer Start-->
+<footer class="well"style = "border-radius: 0; background-color: #ccc;bottom:0;margin-bottom:0;margin-top:50px; height: 80px ">
+            <div class="container">
+                <div class ="row">
+                    <div class="col-sm-6">
+                        <p>Call Us : 012 - 7672 - 4960 Email Us : support@sawafcafee.com	</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="copy-right">© All Rights Reserved by SawafCafee</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <ul class = "list-inline">
+                            <li><i class="fa fa-twitter"></i></li>
+                            <li><i class="fa fa-facebook"></i></li>
+                            <li><i class="fa fa-rss"></i></li>
+                            <li><i class="fa fa-youtube"></i></li>
+                            <li><i class="fa fa-linkedin"></i></li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>       
+        </footer>
+<!--Footer End-->
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery.easing.min.js"?>"></script>		
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/supersized.3.2.7.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/supersized.shutter.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/superized-custom.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/custom.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery-1.10.2.min.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/bootstrap/js/bootstrap.min.js"?>"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js"></script>
+<script src='<?= $this->baseUrl() ?>/js/order.js'></script>
+
+<script src="<?= $this->baseUrl()?>/libs/jquery.mobile-1.4.5.min.js"></script>
+<script src="<?= $this->baseUrl()?>/libs/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+
+<script>
+
+
+      
+
+    $(function () {
+        var mydate;
+        var startdate;
+        var enddate;
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        var today_data = yy + '-' + mm + '-' + dd;
+     
+        $('#datefrom').val("Date from");
+        $('#datefrom').datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
+        $('#dateto').val("Date to");
+        $('#dateto').datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
+        $("#dateto").on("change", function () {
+            startdate = $("#datefrom").val();
+            enddate = $("#dateto").val();
+
+            /////////////////////////// ajax//////////////////////
+            $.ajax({
+                url: "http://localhost/sawafcafe/public/Myorder/listmyyorder",
+                type: "POST",
+                data: {datefrom: startdate, dateto: enddate},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                  
+                    $("#opt").empty();
+                    $("#opt").append("<table id='myTable' border='2'><tr><td>Date</td><td>State</td><td>Quantity</td><td>button</td></tr></table>");
+
+                    //alert(data.length);
+
+                    for (i = 0; i < data.length; i++) {
+                           
+
+                        $("#myTable").append("<tbody class='category'><tr><td class='date' id='" + data[i].users_user_id + "'>" + data[i].date +
+                                "</td><td id='ch'>" + data[i].status +
+                                "</td>"
+
+                                + "<td id='time'>" + data[i].sumq+
+                                "</td><td id='cancel'> <div id='hid'>" +
+                                "<input type='button' value='cancel' id='cancelbtn' onclick='fun(" + data[i].order_id  + "," + data[i].orders_order_id + ")' >"
+                                + "</div> </td></tr></tbody>");
+                        if (data[i].status != "process") {
+
+                            $("input").eq(i + 2).hide();
+
+                        }
+
+                    }
+
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+
+        });
+
+
+    });
+
+</script>  
+<script>
+
+    $(function () {
+        fun = function (oid, pid) {
+
+            
+            $.ajax({
+                url: "/sawafcafe/public/Myorder/listmyyorder",
+                // cashe:false,
+                type: "POST",
+                dataType: "json",
+                data: {orderId: oid, prodorderId: pid},
+                success: function (r) {
+                    //alert("success");
+                   
+                    location.reload();
+                  
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        };
+
+        $(document).delegate(".date", "click", function () {
+
+            var date = $(this).text();
+            var user_id = $(this).attr("id");
+         
+            $.ajax({
+                url: "/sawafcafe/public/Myorder/listmyyorder",
+                // cashe:false,
+                type: "POST",
+                dataType: "json",
+                data: {user_id: user_id, date: date},
+                success: function (r) {
+                   
+                    thetable ='<table border="1" id="sectable">';
+                  
+                    thetable +='<tr>';
+                    for (var i = 0; i < r.length; i++) {
+                        thetable += '<td><div> &nbsp;&nbsp;&nbsp;' + (r[i].quantity*r[i].price) + ' LE</div><img src="http://localhost/cafteria/public/upload/' + r[i].product_image + '" height="75" width="75"/><h4>&nbsp;&nbsp;&nbsp;' + r[i].product_name + '</h4><div>&nbsp;&nbsp;&nbsp;' + r[i].price + '</div></td>';
+                    }
+                    thetable +='</tr>';
+                    thetable +='</table>';
+                    //table +='</div>';
+                    //$("#datetotal").empty();
+                    $("#sectable").remove();
+                    $("#opt").append(thetable);
+
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+
+    });
+
+</script>
+<script>
+jQuery(document).ready(function($) {
+   'use strict';
+    
+$("#owl-demo").owlCarousel({ 
+autoPlay: false, //Set AutoPlay to 3 seconds 
+items : 6,
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+pagination: false 
+});
+
+});
+</script>
+<script>
+jQuery(document).ready(function($) {
+   'use strict';
+$("a[data-gal^='prettyPhoto']").prettyPhoto({hook: 'data-gal'});
+});
+</script>
+      <script type="text/javascript">
+$(".dropdown-menu li a").click(function(){
+  var selText = $(this).text();
+  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
+
+$("#btnSearch").click(function(){
+	alert($('.btn-select').text()+", "+$('.btn-select2').text());
+});
+      </script>
+    </body>
+</html>

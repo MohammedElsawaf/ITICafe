@@ -1,0 +1,84 @@
+<section>
+        <style>
+        table tr th,table tr td{
+        padding: 5px;
+        border: solid 1px #CCC;
+        width:100%;
+        
+    }
+    
+    table tr th{
+        background: #e4e4e4;
+        font: bold 0.9em Arial, Helvetica, san-serif;
+        color: #666;
+        
+    }
+    
+    table tr td{
+        font: 0.85em Arial, Helvetica, san-serif;
+        color: #333;
+        
+    }
+    
+    table tr:nth-child(2n+1){
+        background: #f1f1f1;
+    }
+    
+        form input[type="text"],input[type="email"] {
+	
+	outline: none;
+	background: none;
+	font-size:12px;
+	color: #acacac;
+	width:100%;
+	padding:5px;
+}
+        form input[type="button"] {
+	
+	cursor: pointer;
+	background: url(../images/search.png) no-repeat 0px 7px;
+	position: absolute;
+	font-size: 30px;
+	width: 100%;
+	
+}
+    
+    
+</style>
+    <div class="container">
+        <div class="row center-block">
+
+            
+            <div class="col-sm-12" style="text-align:lefy; padding: 10px 0;">
+                <a href="<?= $this->baseUrl()."/admin/add-user"?>" >add user <i class = "fa fa-plus"></i></a>
+                
+            </div>
+            
+            <table class="table-bordered text-center" id="cafe-order" style="width:100%">
+                <tr>
+                    <th>IMAGE</th>
+                    <th>NAME</th>
+                    <th>ROOM NO.</th>
+                    <th>EXT.</th>
+                    <th colspan = '2'>ACTION</th>
+                </tr>
+                <?php
+                    $list = $this->users;
+                    for($i = 0 ; $i < count($list); $i++){
+                    ?>
+                <tr>
+                    <td><?= $list[$i]['image'] ?></td>
+                    <td><?= $list[$i]['name'] ?></td>
+                    <td><?= $list[$i]['room_no'] ?></td>
+                    <td><?= $list[$i]['ext'] ?></td>
+                    <td><a href='<?= $this->baseUrl()."/admin/edit-user/?id=".$list[$i]['user_id'] ?>'><i class="fa fa-edit"></i></a></td>
+                    <td><a href='<?= $this->baseUrl()."/admin/delete-user/?id=".$list[$i]['user_id'] ?>'><i class="fa fa-times"></i></a></td>
+                </tr>
+                <?php
+                }   
+                ?>    
+            </table>
+            
+        </div>
+    </div>
+</section>

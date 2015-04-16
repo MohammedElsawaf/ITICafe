@@ -1,0 +1,145 @@
+<?php
+$prod = array();
+for ($i = 0; $i < count($this->product); $i++) {
+    $prod [$this->product[$i]['users_user_id']][$this->product[$i]['orders_order_id']][]= array(
+        "product_name"=>$this->product[$i]['product_name'],"product_image"=>$this->product[$i]['product_image'],
+        "quantity"=>$this->product[$i]['quantity'],
+        "price"=>$this->product[$i]['price']);
+    
+}
+
+$order = array();
+for ($j = 0; $j < count($this->order); $j++) {
+    $order[$this->order[$j]['order_id']] = array($this->order[$j]['date'], $this->total[$j]['amount']);
+
+}
+?>
+<section id="my-content">
+    <div class="container">
+        <div class="row center-block">
+            <br>
+            <form method="post">
+                <div class="row">
+                <div class="col-sm-1">
+                    <h5>From</h5>
+                </div>
+                <div class="col-sm-3">
+                    <input type="date" name="from" class="form-control">
+                </div>
+                <div class="col-sm-1">
+                    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To</h5>
+                </div>
+                <div class="col-sm-3">
+                    <input type="date" name="to" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="user">
+                        <option value="0">users</option>
+                        <?php 
+                            if($this->alluser){
+                                for ($i = 0; $i < count($this->alluser); $i++) {
+                                    echo '<option value="'.$this->alluser[$i]['user_id'].'">'.$this->alluser[$i]['name'].'</option>';
+                                }
+                                
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" name="serach" class="btn btn-primary" value="Search" /> 
+                </div>
+            </div>
+            </form>
+            <br>
+            <br>
+            <table class="table table-bordered table-hover text-center" id="cafe-order" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th colspan="2">NAME</th>
+                        <th>TOTAL AMOUNT</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $a= 0;
+                    for ($i = 0; $i < count($this->users); $i++) {
+                        ?>
+                             <tr data-toggle="collapse" data-target="#user<?= $i ?>" class="accordion-toggle">
+                                <td><a><i class="fa fa-plus"></i></a></td>
+                                <td><?= $this->users[$i]['name'] ?></td>
+                                <td><?= $this->users[$i]['amount'] ?> EGP</td>
+                            </tr>
+                    
+                   
+                    <tr>
+                        <td colspan="3" class="hiddenRow">
+                            <div id="user<?= $i ?>" class="accordian-body collapse">
+                                <table class="table table-bordered table-hover text-center" id="cafe-order" style="border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">ORDER DATE</th>
+                                            <th>AMOUNT</th>
+                                        </tr>
+                                    </thead>
+                                     <?php
+                                    
+                                    foreach ($prod[$this->users[$i]['user_id']] as $key => $value) {
+                                     
+                                            ?>
+                                    <tbody>
+                                        <tr data-toggle="collapse" data-target="#order<?= $a ?>" class="accordion-toggle">
+                                            <td><a><i class="fa fa-plus"></i></a></td>
+                                            <td><?= $order[$key][0] ?></td>
+                                            <td><?= $order[$key][1] ?> EGP</td>
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td colspan="3" class="hiddenRow">
+                                                <div id="order<?= $a ?>" class="accordian-body collapse">   
+                                                    <div class="row well text-center" style="margin-left: 0; margin-right: 0;">
+                                                        <?php
+                                                        $total = 0;
+                                        for ($m = 0; $m < count($prod[$this->users[$i]['user_id']][$key]); $m++) {
+                                             
+
+                                            ?>
+                                            <div class = 'col-sm-2'>
+                                                <img src="<?= $this->baseUrl() . "/images/".$prod[$this->users[$i]['user_id']][$key][$m]['product_image'] ?>" class="img-responsive" style="width:70%;height:70%;margin:25px auto;"/>
+                                                <h4><?= $prod[$this->users[$i]['user_id']][$key][$m]['product_name'] ?></h4>
+                                                <h5><?= $prod[$this->users[$i]['user_id']][$key][$m]['quantity'] ?></h5>
+                                            </div>
+                                            <?php
+                                         
+                                       
+                                        }
+                                    ?>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class = 'col-sm-offset-4 col-sm-4 text-center'>
+                                                            <h4 style="margin-bottom:10px; margin-top:5px;padding:10px;border:1px solid #ccc;font:35px;">TOTAL &nbsp;  <?= $order[$key][1] ?> EGP<h4> 
+                                                        </div>
+                                                    </div>         
+                                                </div>    
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                            <?php
+                                            $a++;
+                                        }
+                                     ?>
+                                        
+                                </table>
+                            </div>    
+                        </td>
+                    </tr>
+                        <?php
+                        
+                    }
+                    ?>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

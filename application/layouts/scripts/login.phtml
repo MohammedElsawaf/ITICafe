@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>ELSAWAF CAFE LOGIN</title>
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/reset.css" ?>" />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/layout.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/supersized.shutter.css"?>" />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/menu.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/font-awesome.css"?>"  />
+<link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Leckerli+One'  />	
+<link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Viga' />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/style.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/responsive.css"?>"  />
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/css/supersized.3.2.7.css"?>"  />
+
+<!--this is what needs to be handled-->
+
+    <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/bootstrap/css/bootstrap.min.css"?>" />
+    <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl()."/font-awesome/css/font-awesome.min.css"?>" />
+
+</head>
+<body>
+
+<!--Control Bar Start-->
+<style>
+    body{
+        background-color: #EEF261;
+    }
+    ul#slide-list {
+    padding: 15px 0px;
+    float: left;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+}
+    
+</style>
+<div id="controls-wrapper" class="load-item">
+<div id="controls">			
+    <ul style="margin-left: -8.5px;" id="slide-list">
+        <li class="slide-link-0"><a></a></li>
+        <li class="slide-link-1 current-slide"><a></a></li>
+        <li class="slide-link-2"><a></a></li>
+        <li class="slide-link-3"><a></a></li></ul>			
+</div>
+</div>
+<!--Control Bar End-->
+
+<!--Logo Start-->
+<section id="logo">
+	<h1 style="font-size: 90px;">ELSAWAF CAFE</h1>
+    <h4>WELCOME TO ELSAWAF CAFETERIA</h4>
+</section>
+<!--Logo End-->
+
+<?php echo $this->layout()->content; ?>
+<!--Container Start-->
+<section id="container"> 
+
+    <form class="col-md-12" action="<?= $this->form->getAction() ?>" enctype="<?= $this->form->getEnctype() ?>" method="post">
+    <div class="form-group">
+        <?= $this->form->getElement('email') ?>
+    </div>
+    <div class="form-group">
+        <?= $this->form->getElement('password') ?>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+        <span class="pull-right"><a href="#">Fogot Password?</a></span>
+    </div>
+</form>
+
+</section>
+<!--Container End-->
+
+<!--Footer Start-->
+<footer>
+<div class="one-third">
+    <p>Call Us : 012 - 7672 - 4960 Email Us : support@elsawaf.com	</p>
+</div>
+<div class="one-third">
+    <p class="copy-right">© All Rights Reserved by Mohammed El-sawaf</p>
+</div>
+<div class="one-third-last">
+    	<ul>
+        	<li><i class="fa fa-twitter"></i></li>
+            <li><i class="fa fa-facebook"></i></li>
+            <li><i class="fa fa-rss"></i></li>
+            <li><i class="fa fa-youtube"></i></li>
+            <li><i class="fa fa-linkedin"></i></li>
+        </ul>
+</div>  
+</footer>
+<!--Footer End-->
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery.easing.min.js"?>"></script>		
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/supersized.3.2.7.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/supersized.shutter.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/superized-custom.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/custom.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/js/jquery-1.10.2.min.js"?>"></script>
+<script type="text/javascript" src="<?= $this->baseUrl()."/bootstrap/js/bootstrap.min.js"?>"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<section id="my-content">
+    <div class="container">
+        <div class="row center-block">
+
+            <form action="<?= $this->form->getAction() ?>" enctype="<?= $this->form->getEnctype() ?>" method="post" class="form-horizontal">
+                
+                <div class="form-group">
+                    <label for="name" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px;">Name</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('name') ?>
+                    </div>
+                    <label hidden id="name-notice"></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Email</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('email') ?>
+                    </div>
+                    <label hidden id="email-notice"></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Password</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('password') ?>
+                    </div>
+                    <label hidden id="pass-notice"></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpassword" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Confirm Password</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('cpassword') ?>
+                    </div>
+                    <label class="error" id="cpass-notice"><?= $this->confirm ?></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="room_no" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Room No.</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('room_no') ?>  
+                    </div>
+                    <label hidden id="room-notice"></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="ext" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Ext.</label>
+                    <div class="col-sm-4">
+                        <?= $this->form->getElement('ext') ?>  
+                    </div>
+                    <label hidden id="ext-notice"></label>
+                </div>
+
+                <div class="form-group">
+                    <label for="image" class="col-sm-offset-2 col-sm-2 control-label" style = "padding-top:25px">Profile Image</label>
+                    <div class="col-sm-4" style="padding: 3px;">
+                        <?= $this->form->getElement('image') ?>  
+                    </div>
+                    <label hidden id="image-notice"></label>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-2" style = "padding-top:15px">
+                        <button type="submit" class="btn btn-primary" id="submit"><?= $this->action ?></button>
+                    </div>
+                    <label hidden id="submit-notice"></label>
+                </div>
+                
+            </form>   
+            
+        </div>
+    </div>
+</section>            

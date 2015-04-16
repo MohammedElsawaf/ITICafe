@@ -1,0 +1,172 @@
+
+
+
+
+<script src="<?= $this->baseUrl()?>/libs/jquery-1.11.1.min.js"></script>
+
+<script src="<?= $this->baseUrl()?>/libs/jquery.mobile-1.4.5.min.js"></script>
+<script src="<?= $this->baseUrl()?>/libs/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<link rel="stylesheet" href="<?= $this->baseUrl()?>/libs/jquery-ui-1.11.4.custom/jquery-ui.css">
+<link rel="stylesheet" href="<?= $this->baseUrl()?>/libs/jquery-ui-1.11.4.custom/jquery-ui.theme.css">
+<link rel="stylesheet" href="<?= $this->baseUrl()?>/libs/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="/cafeterya/public/CSS/newcss.css">
+
+
+
+
+<script>
+
+
+      
+
+    $(function () {
+        var mydate;
+        var startdate;
+        var enddate;
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        var today_data = yy + '-' + mm + '-' + dd;
+     
+        $('#datefrom').val("Date from");
+        $('#datefrom').datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
+        $('#dateto').val("Date to");
+        $('#dateto').datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
+        $("#dateto").on("change", function () {
+            startdate = $("#datefrom").val();
+            enddate = $("#dateto").val();
+
+            /////////////////////////// ajax//////////////////////
+            $.ajax({
+                url: "/sawafcafe/public/Myorder/listmyyorder",
+                type: "POST",
+                data: {datefrom: startdate, dateto: enddate},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                  
+                    $("#opt").empty();
+                    $("#opt").append("<table id='myTable' border='2'><tr><td>Date</td><td>State</td><td>Quantity</td><td>button</td></tr></table>");
+
+                    //alert(data.length);
+
+                    for (i = 0; i < data.length; i++) {
+                           
+
+                        $("#myTable").append("<tbody class='category'><tr><td class='date' id='" + data[i].users_user_id + "'>" + data[i].date +
+                                "</td><td id='ch'>" + data[i].status +
+                                "</td>"
+
+                                + "<td id='time'>" + data[i].sumq+
+                                "</td><td id='cancel'> <div id='hid'>" +
+                                "<input type='button' value='cancel' id='cancelbtn' onclick='fun(" + data[i].order_id  + "," + data[i].orders_order_id + ")' >"
+                                + "</div> </td></tr></tbody>");
+                        if (data[i].status != "process") {
+
+                            $("input").eq(i + 2).hide();
+
+                        }
+
+                    }
+
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+
+        });
+
+
+    });
+
+</script>  
+<script>
+
+    $(function () {
+        fun = function (oid, pid) {
+
+            
+            $.ajax({
+                url: "/sawafcafe/public/Myorder/listmyyorder",
+                // cashe:false,
+                type: "POST",
+                dataType: "json",
+                data: {orderId: oid, prodorderId: pid},
+                success: function (r) {
+                    //alert("success");
+                   
+                    location.reload();
+                  
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        };
+
+        $(document).delegate(".date", "click", function () {
+
+            var date = $(this).text();
+            var user_id = $(this).attr("id");
+         
+            $.ajax({
+                url: "/sawafcafe/public/Myorder/listmyyorder",
+                // cashe:false,
+                type: "POST",
+                dataType: "json",
+                data: {user_id: user_id, date: date},
+                success: function (r) {
+                   
+                    thetable ='<table border="1" id="sectable">';
+                  
+                    thetable +='<tr>';
+                    for (var i = 0; i < r.length; i++) {
+                        thetable += '<td><div> &nbsp;&nbsp;&nbsp;' + (r[i].quantity*r[i].price) + ' LE</div><img src="http://localhost/cafteria/public/upload/' + r[i].product_image + '" height="75" width="75"/><h4>&nbsp;&nbsp;&nbsp;' + r[i].product_name + '</h4><div>&nbsp;&nbsp;&nbsp;' + r[i].price + '</div></td>';
+                    }
+                    thetable +='</tr>';
+                    thetable +='</table>';
+                    //table +='</div>';
+                    //$("#datetotal").empty();
+                    $("#sectable").remove();
+                    $("#opt").append(thetable);
+
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+
+    });
+
+</script>
+
+
+
+<h1>My Orders</h1>  
+<?php
+
+echo $this->myform;
+?>
+
+<div id="opt">
+
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<br>
+<section>
+    <div class="container">
+        <div class="row center-block">
+ 
+            <br>
+ 
+                <div class = "col-sm-8">
+                    <h4 style="text-align: center">Latest Orders</h4>
+                    <br>
+                    <div class="row">
+                        <?php
+                            for($i=0;$i<count($this->order);$i++){
+                               ?>
+                          <div class = 'col-sm-3'>
+                                    <img src="<?= $this->baseUrl() . "/images/".$this->order[$i]['product_image'] ?>" class="img-responsive"/>
+                                    <span><?= $this->order[$i]['product_name'] ?></span>
+                                </div>
+                               <?php 
+                            }
+                        ?>
+                        
+                      
+                    </div>
+                    
+                    <hr>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>

@@ -1,0 +1,25 @@
+<section>
+    <div class="container">
+        <div class="row right-block">
+
+            <br>
+                    <div class = "col-sm-8">
+                    <h4 style="text-align: center">Add To User</h4>
+                    <br>
+                    <div class="row">
+                        <div class = 'col-sm-offset-2 col-sm-8'>
+                            <select class="form-control manualUser">
+                                <?php
+                                if ($this->alluser) {
+                                    for ($i = 0; $i < count($this->alluser); $i++) {
+                                        echo '<option value="' . $this->alluser[$i]['user_id'] . '">' . $this->alluser[$i]['name'] . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+            
+        </div>    
+    </div>
+</section>
